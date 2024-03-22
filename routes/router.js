@@ -81,6 +81,19 @@ router.post("/addUser", async (req, res) => {
   }
 });
 
+const Pet = require("./models/pet");
+
+router.get("/pets", async (req, res) => {
+  try {
+    const pets = await Pet.findAll();
+
+    res.render("pets", { pets });
+  } catch (error) {
+    console.error("Error fetching pets:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 const crypto = require("crypto");
 const { v4: uuid } = require("uuid");
 const passwordPepper = "SeCretPeppa4MySal+";

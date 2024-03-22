@@ -81,7 +81,7 @@ router.post("/addUser", async (req, res) => {
   }
 });
 
-const Pet = require("./models/pet");
+const Pet = require("..models/pet");
 
 router.get("/pets", async (req, res) => {
   try {

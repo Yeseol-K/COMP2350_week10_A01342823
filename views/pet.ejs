@@ -25,7 +25,7 @@
                 <tr>
                   <td><%= index + 1 %></td>
                   <td><%= pet.name %></td>
-                  <td><%= pet.userModel.first_name %> <%= pet.userModel.last_name %></td>
+                  <td><% if (pet.userModel) { %> <%= pet.userModel.first_name %> <%= pet.userModel.last_name %> <% } else { %> Unknown Owner <% } %></td>
                 </tr>
                 <% }); %>
               </tbody>

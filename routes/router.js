@@ -81,10 +81,9 @@ router.post("/addUser", async (req, res) => {
   }
 });
 
-const Pet = require("..models/pet");
-
 router.get("/pets", async (req, res) => {
   try {
+    const Pet = require("..models/pet");
     const pets = await Pet.findAll();
 
     res.render("pets", { pets });

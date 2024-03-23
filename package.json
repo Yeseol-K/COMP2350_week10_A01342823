@@ -14,5 +14,9 @@
 		"uuid": "^9.0.1"
 	},
 	"author": "Patrick",
-	"license": "ISC"
+	"license": "ISC",
+	"devDependencies": {
+		"knex": "^3.1.0",
+		"sequelize-cli": "^6.6.2"
+	}
 }

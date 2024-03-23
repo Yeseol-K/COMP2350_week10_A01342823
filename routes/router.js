@@ -82,11 +82,15 @@ router.post("/addUser", async (req, res) => {
   }
 });
 
-router.get("/pets", async (req, res) => {
+router.get("/pet", async (req, res) => {
   try {
-    const pets = await Pet.findAll();
+    console.log("pet page hit");
+    const users = await userModel.findAll({
+      attributes: ["pet_id", "name"],
+      include: [{ model: Pet }],
+    });
 
-    res.render("pet", { pets });
+    res.render("pet", { users });
   } catch (error) {
     console.error("Error fetching pets:", error);
     res.status(500).send("Internal Server Error");

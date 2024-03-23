@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const databaseConnectionString = include("/databaseConnectionSequelize");
+const databaseConnectionString = require("../databaseConnectionSequelize");
 const sequelize = new Sequelize(databaseConnectionString);
 const Pet = sequelize.define(
   "pet",

@@ -58,8 +58,9 @@ router.get("/deleteUser", async (req, res) => {
     console.log(ex);
   }
 });
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+
+router.use(express.urlencoded({ extended: true }));
+router.use(express.json());
 
 router.post("/addUser", async (req, res) => {
   try {

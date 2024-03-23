@@ -23,9 +23,8 @@
               <tbody>
                 <% pets.forEach((pet, index) => { %>
                 <tr>
-                  <td><%= index + 1 %></td>
+                  <td><%= pet.pet_id %></td>
                   <td><%= pet.name %></td>
-                  <td><% if (pet.userModel) { %> <%= pet.userModel.first_name %> <%= pet.userModel.last_name %> <% } else { %> Unknown Owner <% } %></td>
                 </tr>
                 <% }); %>
               </tbody>

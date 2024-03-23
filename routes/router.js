@@ -82,6 +82,9 @@ router.post("/addUser", async (req, res) => {
   }
 });
 
+userModel.hasMany(Pet, { foreignKey: "web_user_id" });
+Pet.belongsTo(userModel, { foreignKey: "web_user_id" });
+
 router.get("/pet", async (req, res) => {
   try {
     console.log("pet page hit");

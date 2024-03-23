@@ -88,12 +88,12 @@ Pet.belongsTo(userModel, { foreignKey: "web_user_id" });
 router.get("/pet", async (req, res) => {
   try {
     console.log("pet page hit");
-    const users = await userModel.findAll({
+    const pets = await Pet.findAll({
       attributes: ["pet_id", "name"],
-      include: [{ model: Pet }],
+      include: [{ model: userModel }],
     });
 
-    res.render("pet", { users });
+    res.render("pet", { pets });
   } catch (error) {
     console.error("Error fetching pets:", error);
     res.status(500).send("Internal Server Error");

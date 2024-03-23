@@ -1,16 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>All Pets</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="bulma.min.css" />
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   </head>
   <body>
-    <h1>All Pets</h1>
-    <ul>
-      <% pets.forEach(pet => { %>
-      <li><%= pet.name %></li>
-      <% }); %>
-    </ul>
+    <section class="section">
+      <div class="maincolumns columns is-desktop is-vcentered">
+        <div class="column is-10 is-offset-1 notification is-info is-light box container">
+          <div class="title">Pets</div>
+          <% if (locals.pets && pets.length > 0) { %>
+          <div class="table-container">
+            <table class="table is-bordered is-hoverable is-striped is-narrow">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Owner</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% pets.forEach((pet, index) => { %>
+                <tr>
+                  <td><%= index + 1 %></td>
+                  <td><%= pet.name %></td>
+                  <td><%= pet.userModel.first_name %> <%= pet.userModel.last_name %></td>
+                </tr>
+                <% }); %>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3">There are <%= pets.length %> pets.</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <% } else { %>
+          <p>No pets found.</p>
+          <% } %>
+        </div>
+      </div>
+    </section>
   </body>
 </html>

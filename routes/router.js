@@ -3,6 +3,7 @@ const router = require("express").Router();
 // const dbModel = include('databaseAccessLayer');
 //const dbModel = include('staticData');
 const userModel = include("models/web_user");
+const Pet = include("models/pet");
 
 // router.get("/", async (req, res) => {
 //   console.log("page hit");
@@ -83,7 +84,6 @@ router.post("/addUser", async (req, res) => {
 
 router.get("/pets", async (req, res) => {
   try {
-    const Pet = require("..models/pet");
     const pets = await Pet.findAll();
 
     res.render("pets", { pets });

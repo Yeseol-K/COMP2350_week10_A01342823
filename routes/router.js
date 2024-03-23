@@ -86,7 +86,7 @@ router.get("/pets", async (req, res) => {
   try {
     const pets = await Pet.findAll();
 
-    res.render("pets", { pets });
+    res.render("pet", { pets });
   } catch (error) {
     console.error("Error fetching pets:", error);
     res.status(500).send("Internal Server Error");

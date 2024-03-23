@@ -93,7 +93,7 @@ router.get("/pets", async (req, res) => {
       include: [{ model: userModel }],
     });
 
-    res.render("pet", { pets });
+    res.render("pets", { pets });
   } catch (error) {
     console.error("Error fetching pets:", error);
     res.status(500).send("Internal Server Error");
@@ -101,7 +101,7 @@ router.get("/pets", async (req, res) => {
 });
 
 router.get("/showPets", async (req, res) => {
-  console.log("page hit");
+  console.log("showPets page hit");
   try {
     let userId = req.query.id;
     const user = await userModel.findByPk(userId);

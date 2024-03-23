@@ -85,7 +85,7 @@ router.post("/addUser", async (req, res) => {
 userModel.hasMany(Pet, { foreignKey: "web_user_id" });
 Pet.belongsTo(userModel, { foreignKey: "web_user_id" });
 
-router.get("/pet", async (req, res) => {
+router.get("/pets", async (req, res) => {
   try {
     console.log("pet page hit");
     const pets = await Pet.findAll({
@@ -97,6 +97,28 @@ router.get("/pet", async (req, res) => {
   } catch (error) {
     console.error("Error fetching pets:", error);
     res.status(500).send("Internal Server Error");
+  }
+});
+
+router.get("/showPets", async (req, res) => {
+  console.log("page hit");
+  try {
+    let userId = req.query.id;
+    const user = await userModel.findByPk(userId);
+    if (user === null) {
+      res.render("error", { message: "Error connecting to MySQL" });
+      console.log("Error connecting to userModel");
+    } else {
+      let pets = await user.getPets();
+      console.log(pets);
+      let owner = await pets[0].getOwner();
+      console.log(owner);
+      res.render("pets", { allPets: pets });
+    }
+  } catch (ex) {
+    res.render("error", { message: "Error connecting to MySQL" });
+    console.log("Error connecting to MySQL");
+    console.log(ex);
   }
 });
 
